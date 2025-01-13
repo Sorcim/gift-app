@@ -36,7 +36,7 @@ export default class StoreReservationsController {
         reservation,
       })
     } catch (e) {
-      return response.badRequest(e.message)
+      return response.internalServerError(e.message)
     }
     session.flash('notification', {
       title: 'Réservation sauvegardé',

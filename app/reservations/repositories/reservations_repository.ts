@@ -19,6 +19,7 @@ export class ReservationsRepository {
         created_at: new Date(),
         updated_at: new Date(),
       })
+      .returning(['id', 'gift_id', 'reserved_by'])
       .execute()
   }
 
