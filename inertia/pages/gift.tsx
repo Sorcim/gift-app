@@ -10,6 +10,7 @@ type GiftProps = {
 
 export default function Gift(props: GiftProps) {
   const { gift, beneficiary } = props
+  console.log(beneficiary)
   return (
     <Layout>
       <main>
@@ -58,6 +59,7 @@ export default function Gift(props: GiftProps) {
                   {gift.link && (
                     <a
                       href={gift.link}
+                      target="_blank"
                       className="group inline-flex text-sm text-gray-500 hover:text-gray-700"
                     >
                       <GlobeAltIcon

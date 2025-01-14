@@ -17,9 +17,9 @@ export class BeneficiariesRepository {
   findByGiftId(giftId: string) {
     return db
       .selectFrom('beneficiaries')
-      .selectAll()
+      .select(['beneficiaries.id', 'beneficiaries.name'])
       .innerJoin('gifts', 'gifts.beneficiary_id', 'beneficiaries.id')
       .where('gifts.id', '=', giftId)
-      .execute()
+      .executeTakeFirst()
   }
 }

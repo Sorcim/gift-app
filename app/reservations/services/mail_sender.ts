@@ -10,8 +10,8 @@ export class MailSender {
         .subject('Réservation confirmée')
         .htmlView('emails/success_reservation', {
           gift,
-          beneficiary: beneficiary[0],
-          reservation: reservation[0],
+          beneficiary,
+          reservation,
         })
     })
   }

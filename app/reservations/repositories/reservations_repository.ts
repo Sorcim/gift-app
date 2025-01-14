@@ -20,7 +20,7 @@ export class ReservationsRepository {
         updated_at: new Date(),
       })
       .returning(['id', 'gift_id', 'reserved_by'])
-      .execute()
+      .executeTakeFirst()
   }
 
   async delete(gift_id: string) {
