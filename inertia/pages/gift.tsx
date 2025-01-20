@@ -10,7 +10,6 @@ type GiftProps = {
 
 export default function Gift(props: GiftProps) {
   const { gift, beneficiary } = props
-  console.log(beneficiary)
   return (
     <Layout>
       <main>

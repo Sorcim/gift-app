@@ -26,13 +26,4 @@ export class GiftRepository {
   find(id: string) {
     return db.selectFrom('gifts').selectAll().where('id', '=', id).executeTakeFirst()
   }
-
-  findByReservation(id: string) {
-    return db
-      .selectFrom('gifts')
-      .selectAll()
-      .innerJoin('reservations', 'gifts.id', 'reservations.id')
-      .where('reservations.id', '=', id)
-      .executeTakeFirst()
-  }
 }
