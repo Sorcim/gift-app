@@ -28,6 +28,13 @@ export default class StoreReservationsController {
       this.giftRepository.find(id),
       this.beneficiariesRepository.findByGiftId(id),
     ])
+    if (gift!.has_reservation) {
+      session.flash('error', {
+        title: 'Réservation non sauvegardé',
+        message: 'Une réservation existe déjà pour ce cadeau.',
+      })
+      return response.redirect().toRoute('home')
+    }
     try {
       const reservation = await this.repository.store({ gift_id: id, reserved_by: email })
       await this.mailSender.sendSuccessMail(email, {

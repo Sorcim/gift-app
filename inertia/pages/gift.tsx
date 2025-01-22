@@ -4,7 +4,9 @@ import { GlobeAltIcon } from '@heroicons/react/16/solid'
 import type { Beneficiary, Gift } from '#types/common'
 
 type GiftProps = {
-  gift: Gift
+  gift: Gift & {
+    has_reservation: boolean
+  }
   beneficiary: Beneficiary
 }
 
@@ -70,7 +72,7 @@ export default function Gift(props: GiftProps) {
                   )}
                 </div>
                 <div className="mt-10">
-                  <ReservationButton giftId={gift.id} />
+                  <ReservationButton giftId={gift.id} hasReservation={gift.has_reservation} />
                 </div>
               </section>
             </div>

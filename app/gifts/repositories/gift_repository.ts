@@ -1,4 +1,5 @@
 import { db } from '#core/services/db'
+import { sql } from 'kysely'
 
 export class GiftRepository {
   all() {
@@ -24,6 +25,21 @@ export class GiftRepository {
   }
 
   find(id: string) {
-    return db.selectFrom('gifts').selectAll().where('id', '=', id).executeTakeFirst()
+    return db
+      .selectFrom('gifts')
+      .leftJoin('reservations', 'gifts.id', 'reservations.gift_id')
+      .select([
+        'gifts.id',
+        'gifts.name',
+        'gifts.description',
+        'gifts.price',
+        'gifts.image',
+        'gifts.beneficiary_id',
+        sql<boolean>`CASE WHEN reservations.id IS NOT NULL THEN TRUE ELSE FALSE END`.as(
+          'has_reservation'
+        ),
+      ])
+      .where('gifts.id', '=', id)
+      .executeTakeFirst()
   }
 }
